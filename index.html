@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinPulse — 美股明星 & 数字货币动态聚合</title>
+<meta name="description" content="FinPulse 是一个聚合美股明星公司（MAG7+SpaceX）与五大数字货币（BTC/ETH/BNB/SOL/XRP）动态的平台，多信源聚合、编辑精选、热度评分、时间线展示。">
+<meta property="og:title" content="FinPulse — 美股明星 & 数字货币动态聚合">
+<meta property="og:description" content="多信源聚合、编辑精选、热度评分、时间线展示">
+<meta property="og:type" content="website">
+<meta property="og:image" content="preview-desktop.png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0e1a;--bg2:#111827;--card:#1a1f2e;--hover:#242b3d;
+  --border:#2a3142;--text:#e5e7eb;--text2:#9ca3af;--muted:#6b7280;
+  --orange:#f97316;--green:#10b981;--red:#ef4444;--blue:#3b82f6;--purple:#8b5cf6;
+}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.6;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none;transition:color .15s}
+a:hover{color:var(--orange)}
+.container{max-width:960px;margin:0 auto;padding:0 20px}
+
+/* Hero */
+.hero{text-align:center;padding:80px 20px 60px;background:linear-gradient(180deg,#0d1320 0%,#0a0e1a 100%)}
+.hero h1{font-size:3rem;font-weight:800;margin-bottom:16px;background:linear-gradient(135deg,#f97316,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .tagline{font-size:1.25rem;color:var(--text2);margin-bottom:8px}
+.hero .subtitle{font-size:0.95rem;color:var(--muted);margin-bottom:32px}
+.hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:32px}
+.badge{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid var(--border);background:var(--card);color:var(--text2)}
+.badge.tech{color:var(--blue);border-color:var(--blue)+33}
+.badge.feat{color:var(--orange);border-color:var(--orange)+33}
+.cta{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 24px;border-radius:8px;font-weight:600;font-size:14px;transition:all .15s;cursor:pointer;border:none}
+.btn-primary{background:linear-gradient(135deg,#f97316,#ea580c);color:#fff}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(249,115,22,.3);color:#fff}
+.btn-secondary{background:var(--card);color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--orange);color:var(--orange)}
+
+/* Section */
+.section{padding:60px 0;border-top:1px solid var(--border)}
+.section-title{font-size:1.75rem;font-weight:700;margin-bottom:8px;text-align:center}
+.section-desc{text-align:center;color:var(--muted);margin-bottom:40px;font-size:14px}
+
+/* Preview images */
+.preview-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-bottom:20px}
+.preview-card{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--card);transition:border-color .15s}
+.preview-card:hover{border-color:var(--orange)}
+.preview-card img{width:100%;display:block}
+.preview-card .label{padding:12px 16px;font-size:13px;color:var(--text2);border-top:1px solid var(--border);display:flex;align-items:center;gap:6px}
+.preview-card .label .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+@media(min-width:768px){
+  .preview-grid-2{grid-template-columns:1fr 1fr}
+}
+
+/* Features */
+.features{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:640px){.features{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.features{grid-template-columns:1fr 1fr 1fr}}
+.feature{padding:24px;border:1px solid var(--border);border-radius:10px;background:var(--card);transition:all .15s}
+.feature:hover{border-color:var(--orange);transform:translateY(-2px)}
+.feature .icon{font-size:2rem;margin-bottom:12px}
+.feature h3{font-size:1rem;font-weight:600;margin-bottom:6px;color:var(--text)}
+.feature p{font-size:13px;color:var(--text2);line-height:1.5}
+
+/* Tech stack */
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
+.tech-item{text-align:center;padding:16px 8px;border:1px solid var(--border);border-radius:8px;background:var(--card)}
+.tech-item .name{font-weight:600;font-size:13px;margin-bottom:2px}
+.tech-item .desc{font-size:11px;color:var(--muted)}
+
+/* Sources */
+.source-list{display:grid;grid-template-columns:1fr;gap:8px}
+@media(min-width:640px){.source-list{grid-template-columns:1fr 1fr}}
+.source-cat{padding:12px 16px;border:1px solid var(--border);border-radius:8px;background:var(--card)}
+.source-cat .cat-name{font-weight:600;font-size:13px;color:var(--orange);margin-bottom:4px}
+.source-cat .cat-items{font-size:12px;color:var(--text2)}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:20px}
+@media(min-width:640px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{text-align:center;padding:24px 12px;border:1px solid var(--border);border-radius:10px;background:var(--card)}
+.stat .num{font-size:2rem;font-weight:800;color:var(--orange)}
+.stat .label{font-size:12px;color:var(--muted);margin-top:4px}
+
+/* Code */
+.code-block{background:#0d1117;border:1px solid var(--border);border-radius:8px;padding:16px;overflow-x:auto;margin:12px 0}
+.code-block code{font-family:"SF Mono",Monaco,Consolas,monospace;font-size:13px;color:#c9d1d9;white-space:pre}
+.code-block .comment{color:#6e7681}
+.code-block .str{color:#7ee787}
+.code-block .kw{color:#ff7b72}
+
+footer{text-align:center;padding:40px 20px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="container">
+    <h1>📊 FinPulse</h1>
+    <p class="tagline">美股明星 & 数字货币动态聚合</p>
+    <p class="subtitle">多信源聚合 · 编辑精选 · 热度评分 · 时间线展示</p>
+    <div class="hero-badges">
+      <span class="badge tech">Next.js 16</span>
+      <span class="badge tech">TypeScript</span>
+      <span class="badge tech">Tailwind CSS</span>
+      <span class="badge tech">SQLite</span>
+      <span class="badge feat">22 RSS 信源</span>
+      <span class="badge feat">巨鲸监控</span>
+      <span class="badge feat">PWA</span>
+    </div>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://github.com/boboza-art/finpuls" target="_blank">⭐ 查看源码</a>
+      <a class="btn btn-secondary" href="#preview">📸 预览效果</a>
+      <a class="btn btn-secondary" href="#deploy">🚀 部署指南</a>
+    </div>
+  </div>
+</div>
+
+<!-- Stats -->
+<div class="section">
+  <div class="container">
+    <div class="stats">
+      <div class="stat"><div class="num">500+</div><div class="label">资讯条目</div></div>
+      <div class="stat"><div class="num">22</div><div class="label">RSS 信源</div></div>
+      <div class="stat"><div class="num">8</div><div class="label">关注资产</div></div>
+      <div class="stat"><div class="num">28</div><div class="label">智能标签</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Preview -->
+<div class="section" id="preview">
+  <div class="container">
+    <h2 class="section-title">📸 项目预览</h2>
+    <p class="section-desc">桌面端、移动端、管理后台</p>
+    <div class="preview-grid">
+      <div class="preview-card">
+        <img src="preview-desktop.png" alt="桌面端首页" loading="lazy">
+        <div class="label"><span class="dot" style="background:var(--blue)"></span> 桌面端首页 — 时间线 + 头条 + 价格看板 + 巨鲸监控</div>
+      </div>
+    </div>
+    <div class="preview-grid preview-grid-2">
+      <div class="preview-card">
+        <img src="preview-mobile.png" alt="移动端" loading="lazy">
+        <div class="label"><span class="dot" style="background:var(--green)"></span> 移动端 — 响应式适配</div>
+      </div>
+      <div class="preview-card">
+        <img src="preview-admin.png" alt="信源健康监控" loading="lazy">
+        <div class="label"><span class="dot" style="background:var(--orange)"></span> 管理后台 — 信源健康监控</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Features -->
+<div class="section">
+  <div class="container">
+    <h2 class="section-title">✨ 核心功能</h2>
+    <p class="section-desc">复刻 AI HOT 模式，针对金融场景增强</p>
+    <div class="features">
+      <div class="feature">
+        <div class="icon">📰</div>
+        <h3>时间线 Feed</h3>
+        <p>按日期+时间倒序展示，每日头条精选 Top 2，卡片含信源、热度、标签、推荐理由。</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🔥</div>
+        <h3>热度评分</h3>
+        <p>0-100 分量化关注度，综合信源权重×数量×时效性×事件类型加权计算。</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🏷️</div>
+        <h3>标签自动分类</h3>
+        <p>关键词词边界匹配，6 大维度：公司、币种、事件、主题、情绪、类型。</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📡</div>
+        <h3>多信源聚合</h3>
+        <p>Jaccard 相似度去重，同一事件多信源报道自动合并，信源数和热度动态更新。</p>
+      </div>
+      <div class="feature">
+        <div class="icon">💡</div>
+        <h3>推荐理由引擎</h3>
+        <p>按事件类型自动生成编辑点评（财报、产品发布、监管、ETF、巨鲸异动等模板）。</p>
+      </div>
+      <div class="feature">
+        <div class="icon">🐋</div>
+        <h3>巨鲸链上监控</h3>
+        <p>支持 Whale Alert API，实时展示大额转账、交易所转入转出信号。</p>
+      </div>
+      <div class="feature">
+        <div class="icon">💰</div>
+        <h3>价格看板</h3>
+        <p>CoinGecko API 实时拉取 BTC/ETH/BNB/SOL/XRP 价格和 24h 涨跌。</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📊</div>
+        <h3>信源健康监控</h3>
+        <p>追踪每个信源的抓取延迟、成功率、错误信息，/admin 页面可视化展示。</p>
+      </div>
+      <div class="feature">
+        <div class="icon">📱</div>
+        <h3>移动端优化</h3>
+        <p>响应式布局，卡片紧凑、价格看板横向滚动、侧边栏适配。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tech Stack -->
+<div class="section">
+  <div class="container">
+    <h2 class="section-title">🛠️ 技术栈</h2>
+    <p class="section-desc">现代化的全栈 TypeScript 方案</p>
+    <div class="tech-grid">
+      <div class="tech-item"><div class="name">Next.js 16</div><div class="desc">App Router</div></div>
+      <div class="tech-item"><div class="name">TypeScript</div><div class="desc">类型安全</div></div>
+      <div class="tech-item"><div class="name">Tailwind 4</div><div class="desc">原子化 CSS</div></div>
+      <div class="tech-item"><div class="name">sql.js</div><div class="desc">纯 JS SQLite</div></div>
+      <div class="tech-item"><div class="name">rss-parser</div><div class="desc">RSS 解析</div></div>
+      <div class="tech-item"><div class="name">CoinGecko API</div><div class="desc">价格数据</div></div>
+      <div class="tech-item"><div class="name">date-fns</div><div class="desc">日期处理</div></div>
+      <div class="tech-item"><div class="name">Vercel</div><div class="desc">部署平台</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Sources -->
+<div class="section">
+  <div class="container">
+    <h2 class="section-title">📡 信源列表</h2>
+    <p class="section-desc">22 个公开 RSS/API 信源覆盖</p>
+    <div class="source-list">
+      <div class="source-cat"><div class="cat-name">财经媒体</div><div class="cat-items">CNBC, WSJ Markets, MarketWatch, Seeking Alpha, Barron's, Investing.com</div></div>
+      <div class="source-cat"><div class="cat-name">加密媒体</div><div class="cat-items">CoinDesk, The Block, Decrypt, CryptoSlate, Bitcoin Magazine, Cointelegraph, NewsBTC</div></div>
+      <div class="source-cat"><div class="cat-name">官方博客</div><div class="cat-items">NVIDIA Blog, Apple Newsroom, Meta Newsroom</div></div>
+      <div class="source-cat"><div class="cat-name">社区/监管</div><div class="cat-items">Hacker News, SEC EDGAR</div></div>
+      <div class="source-cat"><div class="cat-name">关注公司</div><div class="cat-items">Apple, Microsoft, Google, Amazon, Meta, Tesla, NVIDIA, SpaceX</div></div>
+      <div class="source-cat"><div class="cat-name">关注币种</div><div class="cat-items">BTC, ETH, BNB, SOL, XRP</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Deploy -->
+<div class="section" id="deploy">
+  <div class="container">
+    <h2 class="section-title">🚀 快速开始</h2>
+    <p class="section-desc">本地运行或部署到 Vercel</p>
+    <div class="code-block"><code><span class="comment"># 克隆仓库</span>
+git clone https://github.com/boboza-art/finpuls.git
+cd finpulse
+
+<span class="comment"># 安装依赖</span>
+pnpm install
+
+<span class="comment"># 初始化种子数据</span>
+pnpm seed
+
+<span class="comment"># 抓取 RSS 新闻（首次）</span>
+pnpm fetch
+
+<span class="comment"># 开发模式</span>
+pnpm dev
+
+<span class="comment"># 生产构建</span>
+pnpm build && pnpm start</code></div>
+    <p style="text-align:center;margin-top:20px">
+      <a class="btn btn-primary" href="https://vercel.com/new" target="_blank">Deploy to Vercel</a>
+    </p>
+  </div>
+</div>
+
+<!-- API -->
+<div class="section">
+  <div class="container">
+    <h2 class="section-title">🔌 API 接口</h2>
+    <p class="section-desc">RESTful API，支持二次开发</p>
+    <div class="code-block"><code><span class="comment"># 获取资讯列表</span>
+GET /api/items?tag=NVIDIA&limit=50
+
+<span class="comment"># 获取资讯详情</span>
+GET /api/items/{id}
+
+<span class="comment"># 获取实时价格</span>
+GET /api/prices
+
+<span class="comment"># 获取信源健康状态</span>
+GET /api/health
+
+<span class="comment"># 图片代理</span>
+GET /api/img-proxy?url=...</code></div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>FinPulse © 2026 · 数据来源公开 RSS 和 API · 仅供参考，不构成投资建议</p>
+  <p style="margin-top:8px">
+    <a href="https://github.com/boboza-art/finpuls" target="_blank">GitHub</a> · 
+    <span>MAG7 + SpaceX + BTC/ETH/BNB/SOL/XRP</span>
+  </p>
+</footer>
+
+</body>
+</html>
