@@ -1,0 +1,17 @@
+{
+  "name": "FinPulse — 美股明星 & 数字货币动态聚合",
+  "short_name": "FinPulse",
+  "description": "多信源聚合、编辑精选、热度评分、时间线展示",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0e1a",
+  "theme_color": "#f97316",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
