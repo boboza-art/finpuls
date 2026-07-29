@@ -11,34 +11,18 @@ const SOURCES: Source[] = [
   { id: "reuters", name: "Reuters", type: "rss", url: "https://www.reuters.com", weight: 80, category: "财经媒体" },
   { id: "bloomberg", name: "Bloomberg", type: "rss", url: "https://www.bloomberg.com", weight: 85, category: "财经媒体" },
   { id: "wsj-markets", name: "WSJ MarketWatch", type: "rss", url: "https://www.marketwatch.com", weight: 78, category: "财经媒体" },
-  // 加密媒体
-  { id: "coindesk", name: "CoinDesk", type: "rss", url: "https://www.coindesk.com", weight: 82, category: "加密媒体" },
-  { id: "theblock", name: "The Block", type: "rss", url: "https://www.theblock.co", weight: 80, category: "加密媒体" },
-  { id: "decrypt", name: "Decrypt", type: "rss", url: "https://decrypt.co", weight: 70, category: "加密媒体" },
-  { id: "cryptoslate", name: "CryptoSlate", type: "rss", url: "https://cryptoslate.com", weight: 65, category: "加密媒体" },
-  { id: "bitcoin-magazine", name: "Bitcoin Magazine", type: "rss", url: "https://bitcoinmagazine.com", weight: 72, category: "加密媒体" },
   // 官方博客
   { id: "tesla-blog", name: "Tesla 股东信", type: "blog", url: "https://www.tesla.com/blog", weight: 90, category: "官方博客" },
   { id: "nvidia-blog", name: "NVIDIA Blog", type: "blog", url: "https://blogs.nvidia.com", weight: 88, category: "官方博客" },
   { id: "apple-newsroom", name: "Apple Newsroom", type: "blog", url: "https://www.apple.com/newsroom", weight: 87, category: "官方博客" },
   { id: "meta-newsroom", name: "Meta Newsroom", type: "blog", url: "https://about.meta.com", weight: 85, category: "官方博客" },
-  // 社交平台
-  { id: "whalealert", name: "Whale Alert", type: "twitter", url: "https://twitter.com/whale_alert", weight: 78, category: "链上监控" },
-  { id: "lookonchain", name: "Lookonchain", type: "twitter", url: "https://twitter.com/lookonchain", weight: 76, category: "链上监控" },
-  { id: "embercn", name: "EmberCN", type: "twitter", url: "https://twitter.com/EmberCN", weight: 74, category: "链上监控" },
-  { id: "cz", name: "CZ (@cz_binance)", type: "twitter", url: "https://twitter.com/cz_binance", weight: 85, category: "币圈大V" },
-  { id: "vitalik", name: "Vitalik (@VitalikButerin)", type: "twitter", url: "https://twitter.com/VitalikButerin", weight: 90, category: "币圈大V" },
-  { id: "elonmusk", name: "Elon Musk (@elonmusk)", type: "twitter", url: "https://twitter.com/elonmusk", weight: 92, category: "公司高管" },
+  // 公司高管
   { id: "timcook", name: "Tim Cook (@tim_cook)", type: "twitter", url: "https://twitter.com/tim_cook", weight: 82, category: "公司高管" },
   { id: "satyanadella", name: "Satya Nadella (@satyanadella)", type: "twitter", url: "https://twitter.com/satyanadella", weight: 80, category: "公司高管" },
   // 中文财经
   { id: "wallstreetcn-live", name: "华尔街见闻", type: "rss", url: "https://wallstreetcn.com", weight: 76, category: "中文财经" },
-  { id: "chainnews", name: "链闻", type: "rss", url: "https://www.chainnews.com", weight: 70, category: "中文财经" },
-  { id: "blockbeats", name: "BlockBeats", type: "rss", url: "https://www.theblockbeats.info", weight: 72, category: "中文财经" },
   // SEC 公告
   { id: "sec-edgar", name: "SEC EDGAR", type: "api", url: "https://www.sec.gov/edgar", weight: 95, category: "监管公告" },
-  // 价格数据
-  { id: "coingecko", name: "CoinGecko", type: "api", url: "https://www.coingecko.com", weight: 60, category: "价格数据" },
 ];
 
 // ============================================================

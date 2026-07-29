@@ -158,71 +158,6 @@ export const RSS_SOURCES: RssSource[] = [
     tagKeywords: ALL_TAG_KEYWORDS,
   },
 
-  // ===== 加密货币媒体 =====
-  {
-    id: "coindesk",
-    name: "CoinDesk",
-    url: "https://www.coindesk.com/arc/outboundfeeds/rss/",
-    type: "rss",
-    weight: 82,
-    category: "加密媒体",
-    tagKeywords: [...CRYPTO_KEYWORDS, ...EVENT_KEYWORDS, ...SENTIMENT_KEYWORDS],
-  },
-  {
-    id: "theblock",
-    name: "The Block",
-    url: "https://www.theblock.co/rss.xml",
-    type: "rss",
-    weight: 80,
-    category: "加密媒体",
-    tagKeywords: [...CRYPTO_KEYWORDS, ...EVENT_KEYWORDS, ...SENTIMENT_KEYWORDS],
-  },
-  {
-    id: "decrypt",
-    name: "Decrypt",
-    url: "https://decrypt.co/feed",
-    type: "rss",
-    weight: 70,
-    category: "加密媒体",
-    tagKeywords: [...CRYPTO_KEYWORDS, ...EVENT_KEYWORDS],
-  },
-  {
-    id: "cryptoslate",
-    name: "CryptoSlate",
-    url: "https://cryptoslate.com/feed/",
-    type: "rss",
-    weight: 65,
-    category: "加密媒体",
-    tagKeywords: [...CRYPTO_KEYWORDS, ...EVENT_KEYWORDS],
-  },
-  {
-    id: "bitcoin-magazine",
-    name: "Bitcoin Magazine",
-    url: "https://bitcoinmagazine.com/.rss/full/",
-    type: "rss",
-    weight: 72,
-    category: "加密媒体",
-    tagKeywords: [...CRYPTO_KEYWORDS.filter((k) => k.tag === "BTC"), ...EVENT_KEYWORDS],
-  },
-  {
-    id: "cointelegraph",
-    name: "Cointelegraph",
-    url: "https://cointelegraph.com/rss",
-    type: "rss",
-    weight: 71,
-    category: "加密媒体",
-    tagKeywords: [...CRYPTO_KEYWORDS, ...EVENT_KEYWORDS, ...SENTIMENT_KEYWORDS],
-  },
-  {
-    id: "newsbtc",
-    name: "NewsBTC",
-    url: "https://www.newsbtc.com/feed/",
-    type: "rss",
-    weight: 60,
-    category: "加密媒体",
-    tagKeywords: [...CRYPTO_KEYWORDS, ...SENTIMENT_KEYWORDS],
-  },
-
   // ===== 官方博客 =====
   {
     id: "nvidia-blog",
@@ -252,17 +187,6 @@ export const RSS_SOURCES: RssSource[] = [
     tagKeywords: [...STOCK_KEYWORDS.filter((k) => k.tag === "Meta"), ...TOPIC_KEYWORDS.filter((k) => k.tag === "AI")],
   },
 
-  // ===== Hacker News（技术热点）=====
-  {
-    id: "hn-front",
-    name: "Hacker News",
-    url: "https://hnrss.org/frontpage",
-    type: "rss",
-    weight: 70,
-    category: "社区聚合",
-    tagKeywords: ALL_TAG_KEYWORDS,
-  },
-
   // ===== 中文财经 =====
   {
     id: "wallstreetcn-live",
@@ -273,16 +197,6 @@ export const RSS_SOURCES: RssSource[] = [
     category: "中文财经",
     tagKeywords: ALL_TAG_KEYWORDS,
   },
-  {
-    id: "blockbeats",
-    name: "BlockBeats",
-    url: "https://www.theblockbeats.info/rss",
-    type: "rss",
-    weight: 72,
-    category: "中文财经",
-    tagKeywords: [...CRYPTO_KEYWORDS, ...EVENT_KEYWORDS],
-  },
-
   // ===== SEC EDGAR（财报公告）=====
   {
     id: "sec-edgar",

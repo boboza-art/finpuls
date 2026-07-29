@@ -245,6 +245,11 @@ export async function processAndStore(fetchResults: FetchResult[]): Promise<Proc
       relatedCryptos: tags.filter((t) => ["BTC", "ETH", "BNB", "SOL", "XRP"].includes(t)),
     };
 
+    // 6.6 只保留与目标公司相关的新闻
+    if (!tempItem.relatedStocks || tempItem.relatedStocks.length === 0) {
+      continue; // 跳过不涉及目标公司的新闻
+    }
+
     // 7. 自动生成推荐理由
     const note = generateNote(tempItem);
 

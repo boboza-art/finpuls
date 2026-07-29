@@ -3,9 +3,7 @@ import PriceBar from "@/components/PriceBar";
 import Headlines from "@/components/Headlines";
 import Timeline from "@/components/Timeline";
 import TagFilter from "@/components/TagFilter";
-import WhaleMonitor from "@/components/WhaleMonitor";
 import { getFeaturedItems, getTimeline, getAllTags } from "@/lib/queries";
-import { getRecentWhales } from "@/lib/whale";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 60;
@@ -16,11 +14,10 @@ export default async function HomePage({
   searchParams: Promise<{ tag?: string }>;
 }) {
   const { tag } = await searchParams;
-  const [featured, timeline, tags, whales] = await Promise.all([
+  const [featured, timeline, tags] = await Promise.all([
     getFeaturedItems(),
     getTimeline(50, tag),
     getAllTags(),
-    getRecentWhales(8),
   ]);
 
   return (
@@ -49,7 +46,6 @@ export default async function HomePage({
 
           {/* 侧边栏 */}
           <aside className="space-y-4">
-            <WhaleMonitor whales={whales} />
             <TagFilter tags={tags} />
 
             {/* 关于 */}
@@ -58,13 +54,12 @@ export default async function HomePage({
                 ℹ️ 关于 FinPulse
               </h3>
               <p className="text-xs text-[var(--text-muted)] leading-relaxed">
-                FinPulse 聚合美股明星公司（MAG7+SpaceX）与五大数字货币（BTC/ETH/BNB/SOL/XRP）的多信源动态，
+                FinPulse 聚合 8 只美股明��公司（AAPL / MSFT / GOOGL / AMZN / META / TSLA / NVDA / SpaceX）的多信源动态，
                 每日精选、热度评分、编辑推荐。
               </p>
               <div className="mt-3 pt-3 border-t border-[var(--border-color)] text-xs text-[var(--text-muted)]">
                 <p>📡 {tags.reduce((sum, t) => sum + t.count, 0)} 条资讯</p>
                 <p>🏷️ {tags.length} 个标签</p>
-                <p>🐋 {whales.length} 条巨鲸异动</p>
               </div>
             </div>
           </aside>
