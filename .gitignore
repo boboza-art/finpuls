@@ -40,8 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# database
-/data/*.db
+# database - commit finpulse.db for Vercel SSR
 /data/*.db-journal
 
 # preview screenshots
@@ -49,6 +48,5 @@ next-env.d.ts
 
 # logs
 *.log
-.gitignore
 pnpm-lock.yaml
 pnpm-workspace.yaml

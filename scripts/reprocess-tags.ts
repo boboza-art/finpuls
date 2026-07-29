@@ -28,7 +28,9 @@ async function reprocessAllItems() {
     const item: NewsItem = {
       id: row.id,
       title: row.title,
+      titleCn: "",
       summary: row.summary || "",
+      summaryCn: "",
       sourceId: row.source_id || "",
       sourceName: row.source_name || "",
       sourceUrl: row.source_url || "",

@@ -51,7 +51,9 @@ function initSchema(db: Database): void {
     `CREATE TABLE IF NOT EXISTS items (
       id TEXT PRIMARY KEY,
       title TEXT NOT NULL,
+      title_cn TEXT,
       summary TEXT,
+      summary_cn TEXT,
       source_id TEXT,
       source_name TEXT,
       source_url TEXT,
@@ -133,6 +135,19 @@ function initSchema(db: Database): void {
 
   for (const sql of stmts) {
     db.run(sql);
+  }
+
+  // 迁移：为旧版 items 表添加新列（如果不存在）
+  const columns = queryAll<{ name: string }>(
+    db,
+    `PRAGMA table_info(items)`
+  );
+  const colNames = new Set(columns.map((c) => c.name));
+  if (!colNames.has("title_cn")) {
+    db.run("ALTER TABLE items ADD COLUMN title_cn TEXT");
+  }
+  if (!colNames.has("summary_cn")) {
+    db.run("ALTER TABLE items ADD COLUMN summary_cn TEXT");
   }
 }
 

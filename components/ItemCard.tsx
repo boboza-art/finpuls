@@ -31,14 +31,24 @@ export default function ItemCard({ item }: { item: NewsItem }) {
 
       {/* 标题 */}
       <Link href={`/items/${item.id}`}>
-        <h3 className="text-sm sm:text-base font-medium text-[var(--text-primary)] mb-2 hover:text-[var(--accent-orange)] transition-colors leading-snug">
-          {item.title}
+        <h3 className="text-sm sm:text-base font-medium text-[var(--text-primary)] mb-1 hover:text-[var(--accent-orange)] transition-colors leading-snug">
+          {item.titleCn || item.title}
         </h3>
+        {item.titleCn && item.titleCn !== item.title && (
+          <p className="text-xs text-[var(--text-muted)] mb-2 leading-snug">
+            {item.title}
+          </p>
+        )}
       </Link>
 
       {/* 摘要 */}
+      {item.summaryCn && item.summaryCn !== item.summary && (
+        <p className="text-xs sm:text-sm text-[var(--text-secondary)] line-clamp-2 sm:line-clamp-3 mb-1">
+          {item.summaryCn}
+        </p>
+      )}
       {item.summary && (
-        <p className="text-xs sm:text-sm text-[var(--text-secondary)] line-clamp-2 sm:line-clamp-3 mb-2 sm:mb-3">
+        <p className="text-xs text-[var(--text-muted)] line-clamp-2 mb-2 sm:mb-3">
           {item.summary}
         </p>
       )}

@@ -33,9 +33,14 @@ export default function Headlines({ items }: { items: NewsItem[] }) {
                       {sourceCount} 个信源同时报道
                     </span>
                   </div>
-                  <h3 className="text-sm font-medium text-[var(--text-primary)] line-clamp-2 mb-1">
-                    {item.title}
+                  <h3 className="text-sm font-medium text-[var(--text-primary)] line-clamp-2 mb-0.5">
+                    {item.titleCn || item.title}
                   </h3>
+                  {item.titleCn && item.titleCn !== item.title && (
+                    <p className="text-xs text-[var(--text-muted)] line-clamp-1 mb-1">
+                      {item.title}
+                    </p>
+                  )}
                   <div className="flex items-center gap-2 text-xs text-[var(--text-muted)]">
                     <span>{formatRelativeTime(item.publishedAt)}</span>
                     <span>·</span>

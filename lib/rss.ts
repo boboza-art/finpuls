@@ -10,6 +10,7 @@ import { findDuplicate } from "./dedup";
 import { calculateHeatScore } from "./heat";
 import { autoTag, isBreakingNews, isEarningsNews, isSECNews } from "./tags";
 import { generateNote } from "./note-generator";
+import { translateText } from "./translate";
 import { recordFetch } from "./health";
 import { getDb, saveDb, queryAll, execute } from "./db";
 
@@ -211,15 +212,25 @@ export async function processAndStore(fetchResults: FetchResult[]): Promise<Proc
       isSEC: sec,
     });
 
-    // 6. 生成 ID 并写入数据库
+    // 6. 生成 ID
     const id = cuid();
     const summary = item.content.length > 500 ? item.content.slice(0, 500) + "..." : item.content;
+
+    // 6.5 翻译标题和摘要（英 → 中）
+    const [titleCnResult, summaryCnResult] = await Promise.all([
+      translateText(item.title),
+      translateText(summary),
+    ]);
+    const titleCn = titleCnResult.translatedText;
+    const summaryCn = summaryCnResult.translatedText;
 
     // 构建临时 NewsItem 对象用于生成推荐理由
     const tempItem: NewsItem = {
       id,
       title: item.title,
+      titleCn,
       summary,
+      summaryCn,
       sourceId: source.id,
       sourceName: source.name,
       sourceUrl: item.link,
@@ -240,14 +251,16 @@ export async function processAndStore(fetchResults: FetchResult[]): Promise<Proc
     execute(
       db,
       `INSERT OR REPLACE INTO items
-        (id, title, summary, source_id, source_name, source_url, source_avatar,
+        (id, title, title_cn, summary, summary_cn, source_id, source_name, source_url, source_avatar,
          heat_score, is_featured, is_completed, tags, published_at, created_at,
          note, additional_sources, related_stocks, related_cryptos)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         id,
         item.title,
+        titleCn,
         summary,
+        summaryCn,
         source.id,
         source.name,
         item.link,

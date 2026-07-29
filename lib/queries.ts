@@ -6,7 +6,9 @@ function rowToItem(row: Record<string, unknown>): NewsItem {
   return {
     id: row.id as string,
     title: row.title as string,
+    titleCn: (row.title_cn as string) || "",
     summary: (row.summary as string) || "",
+    summaryCn: (row.summary_cn as string) || "",
     sourceId: (row.source_id as string) || "",
     sourceName: (row.source_name as string) || "",
     sourceUrl: (row.source_url as string) || "",

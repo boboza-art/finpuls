@@ -6,7 +6,9 @@
 export interface NewsItem {
   id: string;
   title: string;
+  titleCn: string;
   summary: string;
+  summaryCn: string;
   sourceId: string;
   sourceName: string;
   sourceUrl: string;

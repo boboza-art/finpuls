@@ -50,13 +50,23 @@ export default async function ItemDetailPage({
           </div>
 
           {/* 标题 */}
-          <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-3 sm:mb-4 leading-tight">
-            {item.title}
+          <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-1 sm:mb-2 leading-tight">
+            {item.titleCn || item.title}
           </h1>
+          {item.titleCn && item.titleCn !== item.title && (
+            <p className="text-sm text-[var(--text-muted)] mb-3 sm:mb-4 leading-snug">
+              {item.title}
+            </p>
+          )}
 
           {/* 摘要正文 */}
+          {item.summaryCn && item.summaryCn !== item.summary && (
+            <div className="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed mb-3 whitespace-pre-line">
+              {item.summaryCn}
+            </div>
+          )}
           {item.summary && (
-            <div className="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed mb-4 whitespace-pre-line">
+            <div className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed mb-4 whitespace-pre-line">
               {item.summary}
             </div>
           )}
